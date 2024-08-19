@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Questao8 {
@@ -13,8 +15,21 @@ public class Questao8 {
 
     private static String getWord() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Digite uma palavra: ");
-        return scanner.nextLine().trim();
+        String palavra = null;
+        boolean inputValido = false;
+
+        while (!inputValido) {
+            try {
+                System.out.print("Digite uma palavra: ");
+                palavra = scanner.nextLine().trim();
+                inputValido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Erro de entrada! Por favor, tente novamente.");
+                scanner.nextLine();
+            }
+        }
+
+        return palavra;
     }
 
     private static boolean isPalindrome(String palavra) {

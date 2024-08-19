@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Questao11 {
@@ -12,11 +14,19 @@ public class Questao11 {
         Scanner scanner = new Scanner(System.in);
         String[] words = new String[2];
 
-        System.out.print("Digite a primeira palavra: ");
-        words[0] = scanner.nextLine().trim();
-
-        System.out.print("Digite a segunda palavra: ");
-        words[1] = scanner.nextLine().trim();
+        for (int i = 0; i < 2; i++) {
+            boolean inputValido = false;
+            while (!inputValido) {
+                try {
+                    System.out.print("Digite a " + (i + 1) + "ª palavra: ");
+                    words[i] = scanner.nextLine().trim();
+                    inputValido = true;
+                } catch (InputMismatchException e) {
+                    System.out.println("Erro de entrada! Por favor, tente novamente.");
+                    scanner.nextLine();
+                }
+            }
+        }
 
         return words;
     }

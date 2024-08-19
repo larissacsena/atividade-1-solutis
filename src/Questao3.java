@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Questao3 {
@@ -10,14 +11,15 @@ class Questao3 {
 
     public static int getValidInteger() {
         Scanner scanner = new Scanner(System.in);
-        int number;
+        int number = 0;
+        boolean validInput = false;
 
-        while (true) {
+        while (!validInput) {
             System.out.print("\nDigite um número inteiro: ");
-            if (scanner.hasNextInt()) {
+            try {
                 number = scanner.nextInt();
-                break;
-            } else {
+                validInput = true;
+            } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, digite um número inteiro.");
                 scanner.next();
             }

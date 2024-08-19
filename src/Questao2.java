@@ -1,5 +1,5 @@
 class Questao2 {
-    public static void main( String[] args ){
+    public static void main(String[] args) {
 
         float biggestNumber = getBiggestNumber(12, 6);
 

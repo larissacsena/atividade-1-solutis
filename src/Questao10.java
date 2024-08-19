@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Questao10 {
@@ -15,8 +17,21 @@ public class Questao10 {
 
     private static String getText() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Digite o texto a ser analisado: ");
-        return scanner.nextLine();
+        String texto = null;
+        boolean inputValido = false;
+
+        while (!inputValido) {
+            try {
+                System.out.print("Digite o texto a ser analisado: ");
+                texto = scanner.nextLine();
+                inputValido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Erro de entrada! Por favor, tente novamente.");
+                scanner.nextLine();
+            }
+        }
+
+        return texto;
     }
 
     private static int[] countVowelsSpacesConsonants(String texto) {
